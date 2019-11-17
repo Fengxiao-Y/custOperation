@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>测试</title>
 </head>
 <body>
 	<h1>本地到远程</h1>
