@@ -3,6 +3,7 @@ package com.yidu.d280.focus.domain;
 import java.io.Serializable;
 
 public class Emp implements Serializable{
+        QQQQQQQQQQQQQQQ
 	private static final long serialVersionUID = -6220734961811174880L;
 	private int empNo;
 	private String empName;
