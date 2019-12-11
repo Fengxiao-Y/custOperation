@@ -6,12 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.google.gson.Gson;
 import com.yidu.d280.dao.focus.impl.CustDaoImpl;
 import com.yidu.d280.focus.dao.CustDao;
@@ -51,35 +45,35 @@ public class CustServlet extends HttpServlet {
 
 	private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
-		//»ñÈ¡À´×ÔÇëÖÐËù´«µÝ¹ýÀ´µÄÔ±¹¤±àºÅ×Ö·û´®
+		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 		String cidStr=request.getParameter("cidStr");
-		//½«×Ö·û´®½øÐÐ°´","(¶ººÅ)·Ö¸îµÄ×Ó×Ö·û´®Êý×é
+		//ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð°ï¿½","(ï¿½ï¿½ï¿½ï¿½)ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String[] cids=cidStr.split(",");
 		
-		//´´½¨Êý¾Ý²ã²Ù×÷¶ÔÏó
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		CustDao custDao=new CustDaoImpl();
 		
-		//ÓÉÓÚÊÇÅúÁ¿É¾³ý£¬ÓÐ¿ÉÄÜÊ§°Ü£¬´Ë´¦Ê¹ÓÃÒì³£´¦ÀíÀ´ÊµÏÖ
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½Ë´ï¿½Ê¹ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 		try{
-			//Ê¹ÓÃÑ­»·½øÐÐÅúÁ¿É¾³ý
+			//Ê¹ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½
 			for(int i=0;i<cids.length;i++){
-				//»ñÈ¡µ±Ç°×Ó×Ö·û´®
+				//ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 				String cid=cids[i];
-				//Ö´ÐÐÉ¾³ý²Ù×÷
+				//Ö´ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				custDao.deleteById(cid);
 			}
 			out.print("success");
 		}catch(Exception e){
 			out.print("failure");
 		}
-		//¹Ø±ÕÊä³ö¶ÔÏó
+		//ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		out.close();
 	}
 
 	private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
 		
-		//½ÓÊÕÀ´×Ô¿Í»§¶ËµÄÊý¾Ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿Í»ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
 		
 		String cid=request.getParameter("cid");
 		String cname=request.getParameter("cname");
@@ -89,13 +83,13 @@ public class CustServlet extends HttpServlet {
 		double rateMoney=Double.parseDouble(request.getParameter("rateMoney"));
 		String eno=request.getParameter("eno");
 		
-		//Êý¾Ý·â×°³É¶ÔÏó
+		//ï¿½ï¿½ï¿½Ý·ï¿½×°ï¿½É¶ï¿½ï¿½ï¿½
 		Cust cust=new Cust(cid, cname, sex, telphone, cardDate, rateMoney, eno);
 		
-		//µ÷ÓÃÊý¾Ý²ã¶ÔÏóÖ´ÐÐÌí¼Ó·½·¨
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½
 		CustDao empDao=new CustDaoImpl();
 		int rows=empDao.update(cust);
-		//ÅÐ¶ÏÐÞ¸ÄÊÇ·ñ³É¹¦
+		//ï¿½Ð¶ï¿½ï¿½Þ¸ï¿½ï¿½Ç·ï¿½É¹ï¿½
 		if(rows>0){
 			out.print("success");
 		}else{
@@ -106,14 +100,14 @@ public class CustServlet extends HttpServlet {
 	}
 
 	/**
-	 * Ôö¼Ó
+	 * ï¿½ï¿½ï¿½ï¿½
 	 * @param request
 	 * @param response
 	 */
 	private void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
 		//System.out.println("1111");
-		//½ÓÊÕÀ´×Ô¿Í»§¶ËµÄÊý¾Ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿Í»ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
 		String cid=request.getParameter("cid");
 		String cname=request.getParameter("cname");
 		String sex=request.getParameter("sex");
@@ -122,13 +116,13 @@ public class CustServlet extends HttpServlet {
 		double rateMoney=Double.parseDouble(request.getParameter("rateMoney"));
 		String eno=request.getParameter("eno");
 		
-		//Êý¾Ý·â×°³É¶ÔÏó
+		//ï¿½ï¿½ï¿½Ý·ï¿½×°ï¿½É¶ï¿½ï¿½ï¿½
 		Cust cust=new Cust(cid, cname, sex, telphone, cardDate, rateMoney, eno);
 		//System.out.println("2222");
-		//µ÷ÓÃÊý¾Ý²ã¶ÔÏóÖ´ÐÐÌí¼Ó·½·¨
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½
 		CustDao custDao=new CustDaoImpl();
 		int rows=custDao.add(cust);
-		//ÅÐ¶ÏÌí¼ÓÊÇ·ñ³É¹¦
+		//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½É¹ï¿½
 		if(rows>0){
 			out.print("success");
 			//System.out.println("3333");
@@ -143,16 +137,16 @@ public class CustServlet extends HttpServlet {
 	private void findAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
 		/*
-		//µÃµ½À´×ÔÇëÇóÖÐµÄÌõ¼þÊý¾Ý
+		//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String empName=request.getParameter("empName");
 		String job=request.getParameter("job");
 		String deptno=request.getParameter("deptno");
 		
-		//Éú³É²éÑ¯Ìõ¼þ
-		//select * from ±íÃû where Ìõ¼þ limit n1,n2 
-		//where ×Ö¶ÎÃû=? and ×Ö¶ÎÃû=? and ×Ö¶ÎÃû=?
+		//ï¿½ï¿½ï¿½É²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+		//select * from ï¿½ï¿½ï¿½ï¿½ where ï¿½ï¿½ï¿½ï¿½ limit n1,n2 
+		//where ï¿½Ö¶ï¿½ï¿½ï¿½=? and ï¿½Ö¶ï¿½ï¿½ï¿½=? and ï¿½Ö¶ï¿½ï¿½ï¿½=?
 		String condition=" where 1=1 ";
-		//¶ÔÌõ¼þÊý¾Ý½øÐÐÅÐ¶Ï²¢×éºÏ³É²éÑ¯Ìõ¼þ
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½ï¿½ï¿½ï¿½ï¿½Ð¶Ï²ï¿½ï¿½ï¿½Ï³É²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 		if(empName!=null && !empName.equals("")){
 			condition=condition+"and empName like '%"+empName+"%' ";
 		}
@@ -162,43 +156,43 @@ public class CustServlet extends HttpServlet {
 		}
 		
 		if(deptno!=null && !deptno.equals("")){
-			//ÓÉÓÚdeptnoÊÇintÀàÐÍ£¬Ê×ÏÈ×ª»»ÀàÐÍ
+			//ï¿½ï¿½ï¿½ï¿½deptnoï¿½ï¿½intï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			int dept=Integer.parseInt(deptno);
-			//Ìí¼Óµ½Ìõ¼þÖÐ
+			//ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			condition=condition+"and deptno="+dept+" ";
 		}
 		
 		System.out.println("condition="+condition);
 		*/
-		//½ÓÊÕÀ´×Ô¿Í»§¶ËµÄdatagrid×é¼þµÄ´«µÝ¹ýÀ´µÄpageºÍrows²ÎÊý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿Í»ï¿½ï¿½Ëµï¿½datagridï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½ï¿½ï¿½pageï¿½ï¿½rowsï¿½ï¿½ï¿½ï¿½
 		int rows=Integer.parseInt(request.getParameter("rows"));
 		int page=Integer.parseInt(request.getParameter("page"));
 		
-		//µ÷ÓÃÊý¾Ý²ãÖ´ÐÐ·ÖÒ³²éÑ¯
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý²ï¿½Ö´ï¿½Ð·ï¿½Ò³ï¿½ï¿½Ñ¯
 		CustDao custDao=new CustDaoImpl();
-		//»ñµÃµ±Ç°Ò³µÄÊý¾Ý¼¯ºÏ
+		//ï¿½ï¿½Ãµï¿½Ç°Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½
 		List<Cust> custList=custDao.findByPage(rows, page);
-		//²éÑ¯³öemp±íµÄ×Ü¼ÇÂ¼Êý
+		//ï¿½ï¿½Ñ¯ï¿½ï¿½empï¿½ï¿½ï¿½ï¿½Ü¼ï¿½Â¼ï¿½ï¿½
 		int totalRows=custDao.count();
 		
-		//A·½Ê½£º
+		//Aï¿½ï¿½Ê½ï¿½ï¿½
 		/*
-		//½«Êý¾Ý¼¯ºÏ×ª»»³ÉJSONÊý¾Ý¸ñÊ½
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½JSONï¿½ï¿½ï¿½Ý¸ï¿½Ê½
 		String jsonStr=JSONArray.fromObject(empList).toString();
-		//Éú³É¸ñÊ½»¯Êý¾Ý
+		//ï¿½ï¿½ï¿½É¸ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String json="{\"total\":"+totalRows+",\"rows\":"+jsonStr+"}";
 		*/
 		
-		//B:·½Ê½
-		//¶¨ÒåÓ³Éä¼¯ºÏ¶ÔÏó
+		//B:ï¿½ï¿½Ê½
+		//ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ä¼¯ï¿½Ï¶ï¿½ï¿½ï¿½
 		Map<String, Object> mapData = new HashMap<String, Object>();
 		mapData.put("total", totalRows);
 		mapData.put("rows", custList);
-		//¶¨ÒåGson¶ÔÏó
+		//ï¿½ï¿½ï¿½ï¿½Gsonï¿½ï¿½ï¿½ï¿½
 		Gson gson = new Gson();
-		//Í¨¹ýGson¶ÔÏó½«Map¼¯ºÏ×ª»»³ÉjsonÊý¾Ý¸ñÊ½
+		//Í¨ï¿½ï¿½Gsonï¿½ï¿½ï¿½ï¿½Mapï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½jsonï¿½ï¿½ï¿½Ý¸ï¿½Ê½
 		String jsonData = gson.toJson(mapData);
-		//½«jsonÊý¾ÝÊä³öµ½¿Í»§¶Ë
+		//ï¿½ï¿½jsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½
 		out.println(jsonData);
 		//System.out.println(jsonData);
 		out.close();
